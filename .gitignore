@@ -3,7 +3,7 @@
 *.gradle/
 *target/
 *log/
-*.imi
+*.iml
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
