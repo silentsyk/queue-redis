@@ -1,9 +1,8 @@
 *.class
 *.idea/
 *.gradle/
-*target/
-*log/
-*.imi
+
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
