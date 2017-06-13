@@ -31,7 +31,6 @@ public class RedisQueueResourceImpl implements RedisQueueResource{
 
     @Override
     public boolean sendMessage(SendModel sendModel) {
-        logger.info(serializer.serialize(sendModel));
         if(StringUtils.isEmpty(sendModel.getMessage())||StringUtils.isEmpty(sendModel.getQueueName())){
             return false;
         }

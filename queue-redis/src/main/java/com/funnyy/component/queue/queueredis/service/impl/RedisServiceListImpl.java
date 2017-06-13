@@ -41,7 +41,6 @@ public class RedisServiceListImpl implements RedisService{
 
     @Override
     public Object get(Object key) {
-        logger.info("");
         ListOperations<String,String> listOperations=redisTemplate.opsForList();
         String value=listOperations.leftPop((String) key,second, TimeUnit.SECONDS);
         return value;
