@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -28,37 +29,24 @@ public class RedisQueueResourceImpl implements RedisQueueResource{
     @Autowired
     private Serializer serializer;
 
-    @Autowired
-    private RestTemplate restTemplate;
-
-    @Autowired
-    @Qualifier(value = "compatibleRestTemplate")
-    private RestTemplate restTemplate2;
-
     @Override
     public boolean sendMessage(SendModel sendModel) {
         logger.info(serializer.serialize(sendModel));
-        redisService.get("a");
-        return false;
+        if(StringUtils.isEmpty(sendModel.getMessage())||StringUtils.isEmpty(sendModel.getQueueName())){
+            return false;
+        }
+        logger.info("write message to queue [{}],messages [{}]",sendModel.getQueueName(),sendModel.getMessage());
+        return redisService.add(sendModel.getQueueName(),sendModel.getMessage());
     }
 
     @Override
     public String getMessage(String queueName) {
-        return null;
+        String message=(String) redisService.get(queueName);
+        if(message==null){
+            return null;
+        }
+        logger.info("read message from queue [{}],message [{}]",queueName,message);
+        return message;
     }
 
-    @Override
-    public String test() {
-        String test=restTemplate.getForObject("https://127.0.0.1:8520/queue/redis/ssl/test/abc",String.class);
-        logger.info("{}",test);
-        String test2=restTemplate2.getForObject("https://127.0.0.1:8520/queue/redis/ssl/test/abc",String.class);
-        logger.info("{}",test2);
-        return null;
-    }
-
-    @Override
-    public String testServer(String name) {
-        logger.info("test {}",name);
-        return "hello";
-    }
 }

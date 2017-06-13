@@ -17,15 +17,7 @@ public interface RedisQueueResource {
     @Path("/send")
     boolean sendMessage(SendModel sendModel);
 
-    @POST
-    @Path("/get")
-    String getMessage(String queueName);
-
     @GET
-    @Path("/test")
-    String test();
-
-    @GET
-    @Path("/ssl/test/{aaa}")
-    String testServer(@PathParam("aaa")String name);
+    @Path("/get/{queueName}")
+    String getMessage(@PathParam("queueName") String queueName);
 }

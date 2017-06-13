@@ -30,38 +30,4 @@ public class Config {
     public Serializer serializer(){
         return new JacksonSerializer();
     }
-
-    @Bean
-    public RestTemplate restTemplate(){
-        HttpComponentsClientHttpRequestFactory factory=new HttpComponentsClientHttpRequestFactory();
-        factory.setConnectionRequestTimeout(100000);
-        factory.setReadTimeout(100000);
-        return new RestTemplate(factory);
-    }
-
-    @Bean(name = "compatibleRestTemplate")
-    public RestTemplate restTemplateCompatible(){
-        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
-        factory.setReadTimeout(100000);//ms
-        factory.setConnectTimeout(100000);//ms
-        return new RestTemplate(factory);
-    }
-
-//    @Bean
-//    public EmbeddedServletContainerFactory servletContainer() {
-//        JettyEmbeddedServletContainerFactory factory = new JettyEmbeddedServletContainerFactory();
-//        factory.setPort(9999);
-//        factory.setContextPath("/test");
-//        return factory;
-//    }
-
-//    @Bean
-//    public Connector httpConnector(){//2
-//        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-//        connector.setScheme("http");
-//        connector.setPort(9090);
-//        connector.setSecure(false);
-//        connector.setRedirectPort(8443);
-//        return connector;
-//    }
 }

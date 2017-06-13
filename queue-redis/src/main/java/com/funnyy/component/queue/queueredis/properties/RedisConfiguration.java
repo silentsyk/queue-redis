@@ -1,4 +1,4 @@
-package com.funnyy.component.queue.queueredis.config;
+package com.funnyy.component.queue.queueredis.properties;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

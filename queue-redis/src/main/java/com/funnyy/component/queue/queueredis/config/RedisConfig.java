@@ -1,5 +1,6 @@
 package com.funnyy.component.queue.queueredis.config;
 
+import com.funnyy.component.queue.queueredis.properties.RedisConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +16,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @Configuration
 @Import({
-    com.funnyy.component.queue.queueredis.config.RedisConfiguration.class,
+    com.funnyy.component.queue.queueredis.properties.RedisConfiguration.class,
 })
 class RedisConfig {
 
